@@ -4,26 +4,21 @@ from tech.aelson.algorithms.util.util import Util
 
 
 def main():
-    first_array = [
+    grades = [
         Grade("andre", 4),
         Grade("mariana", 5),
         Grade("carlos", 8.5),
         Grade("paulo", 9),
-    ]
-
-    second_array = [
         Grade("jonas", 3),
         Grade("juliana", 6.7),
         Grade("guilherme", 7),
         Grade("lucia", 9.3),
-        Grade("ana", 10),
+        Grade("ana", 10)
     ]
+    Util.print_grades_array("Grades array: ", grades)
 
-    Util.print_grades_array("First array: ", first_array)
-    Util.print_grades_array("Second array: ", second_array)
-
-    rank = MergeSort.execute(first_array, second_array)
-    Util.print_grades_array("Merged array: ", rank)
+    rank = MergeSort.sort_one_array(grades, 0, 4, len(grades))
+    Util.print_grades_array("Sorted array: ", rank)
 
 
 if __name__ == "__main__":
