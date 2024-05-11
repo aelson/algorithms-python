@@ -1,6 +1,5 @@
-from tech.aelson.algorithms.model.Product import Product
-from tech.aelson.algorithms.util.Util import Util
-from tech.aelson.algorithms.sort.novo_sort.InsertionSort import InsertionSort
+from tech.aelson.algorithms.util.util import Util
+from tech.aelson.algorithms.sort.novo_sort.insertion_sort import InsertionSort
 
 
 def main():

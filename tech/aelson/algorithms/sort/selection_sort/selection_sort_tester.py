@@ -1,5 +1,5 @@
-from tech.aelson.algorithms.sort.selection_sort.SelectionSort import SelectionSort
-from tech.aelson.algorithms.util.Util import Util
+from tech.aelson.algorithms.sort.selection_sort.selection_sort import SelectionSort
+from tech.aelson.algorithms.util.util import Util
 
 
 def main():

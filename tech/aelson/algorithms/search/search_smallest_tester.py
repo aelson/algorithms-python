@@ -1,5 +1,5 @@
-from tech.aelson.algorithms.search.SearchSmallest import SearchSmallest
-from tech.aelson.algorithms.model.Product import Product
+from tech.aelson.algorithms.search.search_smallest import SearchSmallest
+from tech.aelson.algorithms.model.product import Product
 
 if __name__ == "__main__":
     products = [

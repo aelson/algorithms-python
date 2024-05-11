@@ -1,5 +1,5 @@
 from typing import List
-from tech.aelson.algorithms.model.Product import Product
+from tech.aelson.algorithms.model.product import Product
 
 
 class Util:

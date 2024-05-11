@@ -1,6 +1,6 @@
 from typing import List
-from tech.aelson.algorithms.model.Product import Product
-from tech.aelson.algorithms.util.Util import Util
+from tech.aelson.algorithms.model.product import Product
+from tech.aelson.algorithms.util.util import Util
 
 
 class InsertionSort:
