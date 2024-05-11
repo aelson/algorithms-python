@@ -10,6 +10,6 @@ if __name__ == "__main__":
         Product("Audi Q5", 45000)
     ]
 
-    smallest = SearchSmallest.find_smallest(products, 0, 4)
+    smallest = SearchSmallest.execute(products, 0, 4)
     print(smallest)
     print("The car", products[smallest].get_name(), "costs", products[smallest].get_price())
