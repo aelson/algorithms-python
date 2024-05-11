@@ -29,24 +29,15 @@ class MergeSort:
             print("------------------------------------")
             current_of_merged += 1
 
-        while current_of_first_array < len(first_array):
-            print("-> Inserting", first_array[current_of_first_array].get_student_name(), "(", first_array[current_of_first_array].get_result(), ") on the position", current_of_merged, "because it is left over from the first array")
-            merged[current_of_merged] = first_array[current_of_first_array]
-            current_of_first_array += 1
-            current_of_merged += 1
-
-        while current_of_second_array < len(second_array):
-            print("-> Inserting", second_array[current_of_second_array].get_student_name(), "(", second_array[current_of_second_array].get_result(), ") on the position", current_of_merged, "because it is left over from the second array")
-            merged[current_of_merged] = second_array[current_of_second_array]
-            current_of_second_array += 1
-            current_of_merged += 1
+        current_of_merged = MergeSort.add_remaining_elements_to_end_of_array(first_array, len(first_array), current_of_first_array, merged, current_of_merged)
+        MergeSort.add_remaining_elements_to_end_of_array(second_array, len(second_array), current_of_second_array, merged, current_of_merged)
 
         return merged
 
     @staticmethod
     def sort_one_array(array: List[Grade], start, middle, end) -> List[Grade]:
         total = len(array)
-        sorted_list = []
+        sorted_list = [None] * total
         sorted_index = 0
         first_part_index = start
         second_part_index = middle
@@ -69,26 +60,25 @@ class MergeSort:
             print("------------------------------------")
             sorted_index += 1
 
-        while first_part_index < middle:
-            print("-> Inserting", array[first_part_index].get_student_name(), "(", array[first_part_index].get_result(),
-                  ") on the position", sorted_index, "because it is left over from the first part of the array")
-            sorted_list.append(array[first_part_index])
-            first_part_index += 1
-            sorted_index += 1
-
-        while second_part_index < end:
-            print("-> Inserting", array[second_part_index].get_student_name(), "(", array[second_part_index].get_result(),
-                  ") on the position", sorted_index, "because it is left over from the second part of the array")
-            sorted_list.append(array[second_part_index])
-            second_part_index += 1
-            sorted_index += 1
-
-        if start > 0:
-            print("Rebuilding the original array keeping the initial object(s) not ordered "
-                  "(because the start is greater then 0)")
-            for index_of_merged in range(sorted_index):
-                print("-> Inserting", sorted_list[index_of_merged].get_student_name(), "(", sorted_list[index_of_merged].get_result(),
-                      ") on the position", start + index_of_merged)
-                array[start + index_of_merged] = sorted_list[index_of_merged]
+        sorted_index = MergeSort.add_remaining_elements_to_end_of_array(array, middle, first_part_index, sorted_list, sorted_index)
+        MergeSort.add_remaining_elements_to_end_of_array(array, end, second_part_index, sorted_list, sorted_index)
+        if start + end < len(array):
+            MergeSort.rebuild_array(array, start, sorted_index, sorted_list)
 
         return array
+
+    @staticmethod
+    def add_remaining_elements_to_end_of_array(array, array_end, array_index, merged, merged_array_index):
+        while array_index < array_end:
+            print("-> Inserting", array[array_index].get_student_name(), "(", array[array_index].get_result(), ") on the position", merged_array_index, "because it is left over from the first array")
+            merged[merged_array_index] = array[array_index]
+            array_index += 1
+            merged_array_index += 1
+        return merged_array_index
+
+    @staticmethod
+    def rebuild_array(array, start, sorted_index, sorted):
+        print("Rebuilding the original array")
+        for index_of_merged in range(sorted_index):
+            print("-> Inserting", sorted[index_of_merged].student_name(), "(", sorted[index_of_merged].result(), ") on the position", index_of_merged)
+            array[start + index_of_merged] = sorted[index_of_merged]
