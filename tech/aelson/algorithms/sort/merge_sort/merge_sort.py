@@ -4,6 +4,15 @@ from tech.aelson.algorithms.model.grade import Grade
 
 class MergeSort:
     @staticmethod
+    def merge_sort(grades, start, end):
+        number_of_elements = end - start
+        if number_of_elements > 1:
+            middle = (start + end) // 2
+            MergeSort.merge_sort(grades, start, middle)
+            MergeSort.merge_sort(grades, middle, end)
+            MergeSort.sort_one_array_with_two_ordered_halfs(grades, start, middle, end)
+
+    @staticmethod
     def merge_two_arrays(first_array: List[Grade], second_array: List[Grade]) -> List[Grade]:
         total = len(first_array) + len(second_array)
         merged = [None] * total
@@ -35,9 +44,8 @@ class MergeSort:
         return merged
 
     @staticmethod
-    def sort_one_array(array: List[Grade], start, middle, end) -> List[Grade]:
-        total = len(array)
-        sorted_list = [None] * total
+    def sort_one_array_with_two_ordered_halfs(array: List[Grade], start, middle, end):
+        sorted_list = [None] * (end - start)
         sorted_index = 0
         first_part_index = start
         second_part_index = middle
@@ -49,12 +57,12 @@ class MergeSort:
             if array[first_part_index].get_result() < array[second_part_index].get_result():
                 print("-> Inserting", array[first_part_index].get_student_name(), "(", array[first_part_index].get_result(),
                       ") on the position", sorted_index)
-                sorted_list.append(array[first_part_index])
+                sorted_list[sorted_index] = array[first_part_index]
                 first_part_index += 1
             else:
                 print("-> Inserting", array[second_part_index].get_student_name(), "(", array[second_part_index].get_result(),
                       ") on the position", sorted_index)
-                sorted_list.append(array[second_part_index])
+                sorted_list[sorted_index] = array[second_part_index]
                 second_part_index += 1
 
             print("------------------------------------")
@@ -62,10 +70,8 @@ class MergeSort:
 
         sorted_index = MergeSort.add_remaining_elements_to_end_of_array(array, middle, first_part_index, sorted_list, sorted_index)
         MergeSort.add_remaining_elements_to_end_of_array(array, end, second_part_index, sorted_list, sorted_index)
-        if start + end < len(array):
-            MergeSort.rebuild_array(array, start, sorted_index, sorted_list)
+        MergeSort.rebuild_array(array, start, sorted_index, sorted_list)
 
-        return array
 
     @staticmethod
     def add_remaining_elements_to_end_of_array(array, array_end, array_index, merged, merged_array_index):
@@ -80,5 +86,6 @@ class MergeSort:
     def rebuild_array(array, start, sorted_index, sorted):
         print("Rebuilding the original array")
         for index_of_merged in range(sorted_index):
-            print("-> Inserting", sorted[index_of_merged].student_name(), "(", sorted[index_of_merged].result(), ") on the position", index_of_merged)
-            array[start + index_of_merged] = sorted[index_of_merged]
+            if sorted[index_of_merged] is not None:
+                print("-> Inserting", sorted[index_of_merged].get_student_name(), "(", sorted[index_of_merged].get_result(), ") on the position", index_of_merged)
+                array[start + index_of_merged] = sorted[index_of_merged]

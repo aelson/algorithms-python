@@ -28,7 +28,7 @@ class Util:
     def print_grades_array(array_title: str, grades: List[Grade]):
         print(array_title)
         for grade in grades:
-            print(grade.get_student_name(), " ", grade.get_result())
+            print(grade.get_student_name(), grade.get_result())
 
     @staticmethod
     def get_unsorted_products() -> List[Product]:
