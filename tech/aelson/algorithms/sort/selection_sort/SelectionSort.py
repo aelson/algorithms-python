@@ -1,6 +1,7 @@
 from typing import List
 from tech.aelson.algorithms.search.SearchSmallest import SearchSmallest
 from tech.aelson.algorithms.model.Product import Product
+from tech.aelson.algorithms.util.Util import Util
 
 
 class SelectionSort:
@@ -11,13 +12,4 @@ class SelectionSort:
 
             smallest = SearchSmallest.execute(products, current, number_of_elements - 1)
 
-            print("<-> Swapping element", current, "with element", smallest)
-
-            current_product = products[current]
-            smallest_product = products[smallest]
-
-            print("<-> Swapping product", current_product.get_name, "with product", smallest_product.get_name)
-
-            products[current] = smallest_product
-            products[smallest] = current_product
-            print("------------------------------------")
+            Util.swap(products, current, smallest);
