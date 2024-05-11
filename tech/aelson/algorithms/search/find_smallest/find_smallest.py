@@ -2,7 +2,7 @@ from typing import List
 from tech.aelson.algorithms.model.product import Product
 
 
-class SearchSmallest:
+class FindSmallest:
     @staticmethod
     def execute(products: List[Product], start: int, end: int) -> int:
         smallest = start
