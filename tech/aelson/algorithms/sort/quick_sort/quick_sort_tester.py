@@ -1,5 +1,5 @@
-from tech.aelson.algorithms.search.find_smaller_elements.find_smaller_elements import FindSmallerElements
 from tech.aelson.algorithms.model.grade import Grade
+from tech.aelson.algorithms.sort.quick_sort.quick_sort import QuickSort
 from tech.aelson.algorithms.util.util import Util
 
 
@@ -7,8 +7,8 @@ def main():
     guilherme = Grade("guilherme", 7)
     unsorted_grades = Util.get_unsorted_grades(guilherme)
 
-    lower_values_count = FindSmallerElements.execute(guilherme, unsorted_grades)
-    print("Lower values count:", lower_values_count)
+    QuickSort.execute(unsorted_grades, 0, len(unsorted_grades))
+    Util.print_grades_array("Sorted array: ", unsorted_grades)
 
 
 if __name__ == "__main__":

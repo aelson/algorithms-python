@@ -1,23 +1,19 @@
 from typing import List
 from tech.aelson.algorithms.model.grade import Grade
+from tech.aelson.algorithms.util.util import Util
 
 
 class Pivot:
     @staticmethod
-    def execute(grades: List[Grade], start: int, end: int) -> int:
+    def execute(grades: List[Grade], end: int) -> int:
         pivot = grades[end - 1]
         lower_values_count = 0
-        for index in range(start, end - 1):
+        for index in range(0, end - 1):
             current = grades[index]
-            if current.get_result() <= pivot.get_result():
-                Pivot.swap(grades, index, lower_values_count)
+            if current.get_result() < pivot.get_result():
+                if index != lower_values_count:
+                    Util.swap(grades, index, lower_values_count)
                 lower_values_count += 1
-        Pivot.swap(grades, end - 1, lower_values_count)
+        if end - 1 != lower_values_count:
+            Util.swap(grades, end - 1, lower_values_count)
         return lower_values_count
-
-    @staticmethod
-    def swap(grades: List[Grade], from_index: int, to_index: int) -> None:
-        grade1 = grades[from_index]
-        grade2 = grades[to_index]
-        grades[to_index] = grade1
-        grades[from_index] = grade2

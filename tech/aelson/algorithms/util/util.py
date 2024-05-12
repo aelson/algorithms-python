@@ -5,16 +5,16 @@ from tech.aelson.algorithms.model.grade import Grade
 
 class Util:
     @staticmethod
-    def swap(products: List[Product], first: int, second: int):
+    def swap(array: List, first: int, second: int):
         print("<-> Swapping element", first, "with", second)
 
-        first_product = products[first]
-        second_product = products[second]
+        first_product = array[first]
+        second_product = array[second]
 
-        print("<-> Swapping product", first_product.get_name(), "with", second_product.get_name())
+        #print("<-> Swapping product", first_product, "with", second_product)
 
-        products[first] = second_product
-        products[second] = first_product
+        array[first] = second_product
+        array[second] = first_product
 
         print("------------------------------------")
 
@@ -38,4 +38,18 @@ class Util:
             Product("Audi Q5", 45000),
             Product("Honda Civic", 30000),
             Product("Tesla Model 3", 50000)
+        ]
+
+    @staticmethod
+    def get_unsorted_grades(special_grade):
+        return [
+            Grade("andre", 4),
+            Grade("carlos", 8.5),
+            Grade("ana", 10),
+            Grade("jonas", 3),
+            Grade("juliana", 6.7),
+            Grade("lucia", 9.3),
+            Grade("paulo", 9),
+            Grade("mariana", 5),
+            special_grade,
         ]

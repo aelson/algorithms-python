@@ -12,4 +12,4 @@ class SelectionSort:
 
             smallest = FindSmallest.execute(products, current, number_of_elements - 1)
 
-            Util.swap(products, current, smallest);
+            Util.swap(products, current, smallest)
